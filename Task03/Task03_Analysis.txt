@@ -1,0 +1,84 @@
+TASK 3 - CAMPUS LIBRARY SEARCH SCREEN
+
+TASK 3.1 - LAYOUT MANAGER CHOICES
+
+1. BorderLayout:
+Used for the main application window.
+It divides the window into North, South, East,
+West and Center regions.
+
+2. FlowLayout:
+Used for arranging search buttons and small controls.
+
+3. GridLayout:
+Used for arranging labels and input fields equally.
+
+4. GridBagLayout:
+Used when components need flexible sizes and positions.
+
+TASK 3.2 - NESTED PANEL DESIGN
+
+JFrame - Campus Library Search
+|
+|-- JPanel - Header
+|   |-- JLabel - Library Search
+|
+|-- JPanel - Search
+|   |-- JLabel - Book Title
+|   |-- JTextField - Search Field
+|   |-- JButton - Search
+|   |-- JButton - Clear
+|
+|-- JPanel - Results
+|   |-- JTable - Book Details
+|
+|-- JPanel - Footer
+    |-- JLabel - Status Message
+
+TASK 3.3 - AWT AND SWING
+
+AWT uses heavyweight components and depends
+on the operating system for component appearance.
+
+Swing provides lightweight components and supports
+a richer set of GUI controls.
+
+Swing components used:
+JFrame, JPanel, JLabel, JTextField, JButton and JTable.
+
+TASK 3.4 - RESIZING BEHAVIOUR
+
+Screenshot 1: Normal window size.
+Screenshot 2: Enlarged window size.
+Screenshot 3: Reduced window size.
+
+BorderLayout and GridBagLayout help components
+adjust when the window is resized.
+
+TASK 3.5 - ALTERNATIVE DESIGN
+
+GridBagLayout:
+Provides flexible component placement and resizing.
+It requires more configuration using constraints.
+
+Absolute positioning:
+Uses fixed coordinates for components.
+It is simple initially but does not adjust properly
+when the window is resized.
+
+COMPLEXITY ANALYSIS
+
+GridBagLayout:
+Component arrangement takes approximately O(n)
+for n components.
+
+Absolute positioning:
+Assigning fixed positions takes O(n).
+Manual resizing adjustments may require extra work.
+
+CONCLUSION
+
+Layout managers make GUI applications flexible
+and easier to maintain. GridBagLayout is suitable
+for complex and resizable screens, while absolute
+positioning is less suitable for responsive designs.
