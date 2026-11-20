@@ -1,0 +1,82 @@
+TASK 4 - EVENT-HANDLING FORENSICS
+
+1. IDENTIFIED EVENT-HANDLING ERROR
+
+The correct MouseListener method name is mouseClicked().
+Java is case-sensitive, so incorrect spelling or capitalization
+will prevent the method from overriding the required method.
+
+2. CORRECTED EVENT HANDLING
+
+MouseAdapter is used to handle mouse clicks.
+The mouseClicked() method stores the clicked position in an
+ArrayList of Point objects.
+The repaint() method requests the panel to be redrawn.
+
+3. DRAWING PERSISTENCE
+
+If drawing is performed directly inside the mouse event,
+the drawing may disappear when the window is refreshed.
+
+To prevent this:
+- Store every clicked position in an ArrayList.
+- Override paintComponent(Graphics g).
+- Use a loop to redraw all stored points.
+- Call repaint() whenever a new point is added.
+
+4. PSEUDOCODE
+
+START
+Create an empty list of points
+When mouse is clicked:
+    Store the clicked position
+    Call repaint()
+When panel is redrawn:
+    Clear the panel
+    For each stored point:
+        Draw a blue circle
+END
+
+5. TODO IMPLEMENTATION
+
+The important operations are:
+- Add the clicked point to the list.
+- Call repaint().
+- Override paintComponent().
+- Use super.paintComponent(g).
+- Redraw all stored points.
+
+6. ALTERNATIVE: BUFFEREDIMAGE
+
+BufferedImage can store the drawing in an image.
+The graphics object of the image can be used to draw
+directly onto the image.
+
+Comparison:
+ArrayList of Points:
+- Stores mouse coordinates.
+- Redraws points whenever required.
+- Simple and suitable for basic drawings.
+
+BufferedImage:
+- Stores the actual drawing as pixels.
+- Preserves more complex drawings.
+- Requires additional memory and image-handling code.
+
+7. TIME AND SPACE COMPLEXITY
+
+Let n be the number of mouse clicks.
+
+Adding a point: O(1) average time.
+Redrawing all points: O(n) time.
+Storing points: O(n) space.
+
+BufferedImage uses memory based on image width and height.
+Its approximate memory requirement is O(width x height).
+
+8. RESULT
+
+The Event Handling Forensics program was implemented
+successfully using Java Swing.
+Mouse clicks are detected correctly, and blue dots remain
+visible after minimizing and restoring the window.
