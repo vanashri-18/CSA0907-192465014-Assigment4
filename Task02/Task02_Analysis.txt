@@ -1,0 +1,159 @@
+TASK 2 - HOSPITAL OUTPATIENT APPOINTMENT DESK
+
+TASK 2.1 - EVENT TABLE
+
+1. Patient ID Field
+Source: TextField
+Event: ActionEvent
+Listener: ActionListener
+Action: Read patient ID.
+
+2. Department Choice
+Source: JComboBox
+Event: ActionEvent
+Listener: ActionListener
+Action: Refresh doctor choices.
+
+3. Doctor Choice
+Source: JComboBox
+Event: ActionEvent
+Listener: ActionListener
+Action: Select doctor.
+
+4. Time Slot Choice
+Source: JComboBox
+Event: ActionEvent
+Listener: ActionListener
+Action: Select appointment time.
+
+5. Book Button
+Source: JButton
+Event: ActionEvent
+Listener: ActionListener
+Action: Validate details and book appointment.
+
+6. Window Close
+Source: JFrame
+Event: WindowEvent
+Listener: WindowListener
+Action: Confirm before closing if booking is in progress.
+
+TASK 2.2 - COMPONENT HIERARCHY
+
+JFrame - Hospital Appointment Desk
+|
+|-- JPanel - Patient Details
+|   |-- JLabel - Patient ID
+|   |-- JTextField - Patient ID
+|
+|-- JPanel - Appointment Details
+|   |-- JLabel - Department
+|   |-- JComboBox - Department
+|   |-- JLabel - Doctor
+|   |-- JComboBox - Doctor
+|   |-- JLabel - Time Slot
+|   |-- JComboBox - Time Slot
+|
+|-- JPanel - Buttons
+    |-- JButton - Book Appointment
+    |-- JButton - Clear
+
+TASK 2.3 - PSEUDOCODE
+
+A. Department Change
+
+START
+Read selected department.
+Clear doctor list.
+Get doctors for selected department.
+Add doctors to doctor list.
+Display updated doctor choices.
+STOP
+
+B. Appointment Booking
+
+START
+Read patient ID.
+Read department, doctor and time slot.
+
+IF any field is empty
+    Display error message.
+ELSE
+    Validate appointment details.
+    Book appointment.
+    Display confirmation message.
+END IF
+
+STOP
+
+TASK 2.4 - EVENT TRACE
+
+1. Application starts.
+2. Window is created and displayed.
+3. Receptionist enters patient ID.
+4. Patient ID field generates an ActionEvent.
+5. Receptionist selects department.
+6. Department selection generates an ActionEvent.
+7. Doctor list is refreshed.
+8. Receptionist selects doctor and time slot.
+9. Receptionist clicks Book Appointment.
+10. ActionListener validates the details.
+11. Confirmation or error message is displayed.
+12. Receptionist closes the window.
+13. WindowClosing event is generated.
+14. If booking is in progress, confirmation is requested.
+15. Window is closed after confirmation.
+
+APPLET LIFECYCLE COMPARISON
+
+init() - Initializes the applet.
+start() - Starts or resumes execution.
+paint() - Displays the applet contents.
+stop() - Pauses execution.
+destroy() - Releases resources.
+
+A desktop JFrame uses window events instead of the applet lifecycle methods.
+
+TASK 2.5 - DATABASE VS MAP
+
+OPTION 1 - DATABASE FETCH
+
+Doctors are fetched from the database whenever the department changes.
+
+Time complexity:
+O(m) for retrieving and displaying doctors,
+where m is the number of doctors returned.
+
+Memory complexity:
+O(m) temporary memory for the returned doctor list.
+
+Advantage:
+Doctor information is always fetched from the database.
+
+Disadvantage:
+Repeated database queries may increase response time.
+
+OPTION 2 - PRELOADED MAP
+
+Doctors are stored in a Map<String, List<Doctor>>.
+
+Time complexity:
+O(1) average time for department lookup.
+O(m) to display the selected department's doctors.
+
+Memory complexity:
+O(d + m), where d is the number of departments
+and m is the total number of doctors.
+
+Advantage:
+Faster department changes without repeated queries.
+
+Disadvantage:
+Uses more memory and requires updates when doctor data changes.
+
+CONCLUSION
+
+A preloaded Map is suitable for faster department
+changes when the doctor data is relatively stable.
+A database is better when doctor information changes
+frequently.
