@@ -1,0 +1,185 @@
+TASK 6 - CAMPUS EVENT REGISTRATION DESKTOP APPLICATION
+CO4 - ANALYSIS REPORT
+
+1. INTRODUCTION
+
+The Campus Event Registration System is a Java Swing desktop
+application connected to a MySQL database using JDBC.
+
+It allows students to register for campus events, validates
+their details, prevents duplicate registrations and displays
+registration records in pages.
+
+2. SYSTEM ARCHITECTURE
+
+The application follows a layered design.
+
+Presentation Layer:
+CampusEventRegistration.java
+- Displays the Swing GUI.
+- Accepts student details.
+- Validates user input.
+- Displays messages and registration records.
+
+Business and Database Layer:
+RegistrationService.java
+- Handles database operations.
+- Inserts student registrations.
+- Checks total registration count.
+- Retrieves paginated records.
+
+Model Layer:
+Registration.java
+- Stores student name.
+- Stores register number.
+- Stores email.
+- Stores event name.
+
+Database Layer:
+MySQL - campus_event_registration
+Table - registrations
+
+3. JDBC CONNECTIVITY
+
+JDBC connects the Java application to MySQL.
+
+Driver:
+MySQL Connector/J
+
+Database:
+campus_event_registration
+
+Table:
+registrations
+
+PreparedStatement is used to insert student details.
+It helps prevent SQL injection.
+
+4. EVENT HANDLING
+
+The application uses ActionListener to handle button clicks.
+
+Register Student:
+Validates details and saves the registration.
+
+Clear:
+Clears all input fields.
+
+Previous:
+Displays the previous page.
+
+Next:
+Displays the next page.
+
+5. INPUT VALIDATION
+
+The application checks:
+- All fields must be filled.
+- Email must follow a valid email format.
+- Duplicate registration is not allowed.
+
+Invalid input displays an error message.
+
+6. DUPLICATE REGISTRATION PREVENTION
+
+A UNIQUE constraint is created on:
+(register_number, event_name)
+
+This prevents the same student from registering
+for the same event more than once.
+
+PreparedStatement is used for database insertion.
+MySQL duplicate error code 1062 is handled.
+
+7. SWINGWORKER IMPLEMENTATION
+
+SwingWorker performs database operations in the
+background without freezing the GUI.
+
+doInBackground():
+Performs database operations.
+
+done():
+Updates the GUI and displays the result.
+
+This keeps the application responsive.
+
+8. PAGINATION
+
+The application displays five records per page.
+
+SQL uses:
+LIMIT and OFFSET
+
+Page 1:
+Records 1 to 5
+
+Page 2:
+Record 6 onwards
+
+Previous and Next buttons allow navigation.
+
+9. TESTING AND RESULTS
+
+Test 1 - Normal Registration
+Input: Valid student details.
+Expected: Registration successful.
+Result: PASS.
+
+Test 2 - Invalid Email
+Input: wrongemail
+Expected: Invalid email message.
+Result: PASS.
+
+Test 3 - Duplicate Registration
+Input: Same register number and event.
+Expected: Duplicate registration message.
+Result: PASS.
+
+Test 4 - Pagination
+Input: Six registration records.
+Expected: Five records on Page 1 and one on Page 2.
+Result: PASS.
+
+10. COMPLEXITY ANALYSIS
+
+Registration:
+Database insertion is approximately O(1) average
+with suitable indexing.
+
+Duplicate checking:
+The UNIQUE constraint uses a database index.
+Lookup is approximately O(log n).
+
+Pagination:
+LIMIT and OFFSET retrieve only the requested page.
+Large OFFSET values may require more database work.
+
+Displaying one page:
+O(P), where P is the page size (5).
+
+11. ALTERNATIVE DESIGN
+
+Alternative: Display all registrations without pagination.
+
+Advantages:
+- Simple implementation.
+- All records appear together.
+
+Disadvantages:
+- More memory usage.
+- Slower loading for large datasets.
+- Difficult to navigate many records.
+
+Pagination is better for large registration datasets.
+
+12. CONCLUSION
+
+The Campus Event Registration System successfully
+demonstrates Java Swing, JDBC, MySQL, event handling,
+input validation, duplicate prevention and pagination.
+
+SwingWorker keeps database operations away from the
+GUI event thread and improves responsiveness.
+
+All four application tests were completed successfully.
