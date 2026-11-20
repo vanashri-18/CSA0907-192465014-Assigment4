@@ -1,0 +1,43 @@
+TASK 1 - GUI DESIGN REVIEW
+
+TASK 1.1 - DESIGN DEFICIENCIES
+
+1. All buttons use one listener, making maintenance difficult.
+2. String comparison uses == instead of equals().
+3. Input validation is missing.
+4. Database operations block the event-dispatch thread.
+5. Thread.sleep() freezes the window.
+6. Receipt button has no proper functionality.
+7. SQL concatenation creates SQL injection risks.
+8. Database connections are not closed.
+9. Exceptions are not handled.
+10. Proper user feedback is missing.
+
+TASK 1.2 - REPAIRED DESIGN
+
+FeePaymentGUI:
+Handles user input, buttons and displays results.
+
+FeeService:
+Validates registration number and amount.
+Processes payment and generates receipt.
+
+TASK 1.3 - DESIGN DEFENCE
+
+The redesigned program separates the GUI from the business logic using two classes, FeePaymentGUI and FeeService. The GUI handles user input and displays results, while FeeService performs validation and payment operations. This separation makes testing easier because payment logic can be tested independently. It also improves maintenance because changes in the interface do not affect payment logic.
+
+ALTERNATIVE CONCEPT
+
+Each button can have its own listener object or Swing Action instead of one listener with an if-else chain.
+
+COMPLEXITY ANALYSIS
+
+One listener:
+Time complexity: O(k) in the worst case.
+Space complexity: O(1) listener objects.
+
+Separate listeners:
+Time complexity: O(1) dispatch per button.
+Space complexity: O(k) listener objects.
+
+Here, k represents the number of buttons.
