@@ -1,0 +1,97 @@
+TASK 5 - CURRENCY CONVERTER
+
+1. INTRODUCTION
+
+The Currency Converter is a Java Swing application.
+It converts an entered amount using an exchange rate.
+It uses four different event-handling styles.
+
+2. FOUR EVENT-HANDLING STYLES
+
+A. Implementing ActionListener
+The main class implements ActionListener.
+The actionPerformed() method handles the Convert button.
+
+B. Anonymous Inner Class
+An anonymous class handles the Clear button.
+It clears the input and output fields.
+
+C. Lambda Expression
+A lambda expression handles the Exit button.
+It closes the application.
+
+D. Method Reference
+A method reference connects the Enter key events
+to the convertAmount() method.
+
+3. UPDATED REQUIREMENTS
+
+The application supports pressing Enter in the
+Amount or Exchange Rate field to perform conversion.
+
+JOptionPane displays success and error messages
+to provide feedback to the user.
+
+4. EVENT-HANDLING COMPARISON
+
+ActionListener:
+Suitable for handling multiple button events.
+Requires implementing a separate method.
+
+Anonymous Inner Class:
+Useful for individual event handling.
+Requires more code.
+
+Lambda Expression:
+Short and easy to read.
+Suitable for functional interfaces.
+
+Method Reference:
+Provides a short way to refer to an existing method.
+Improves code readability.
+
+5. LAMBDA EXPRESSION
+
+Example:
+
+exitButton.addActionListener(e -> System.exit(0));
+
+The lambda expression handles the Exit button click.
+
+6. INPUT VALIDATION
+
+The program checks whether the amount and exchange
+rate are valid numbers.
+
+Negative amounts and zero or negative exchange rates
+are rejected.
+
+NumberFormatException handles invalid text input.
+
+7. TEST CASES
+
+Test 1:
+Amount = 100
+Exchange Rate = 83
+Expected Result = 8300.00
+Status = Passed
+
+Test 2:
+Amount = abc
+Exchange Rate = 83
+Expected Result = Error message
+Status = Passed
+
+8. TIME AND SPACE COMPLEXITY
+
+Currency conversion takes O(1) time.
+Input validation takes O(1) time.
+The application uses O(1) additional space
+for its input and calculation variables.
+
+9. RESULT
+
+The Currency Converter was implemented successfully
+using Java Swing and four event-handling styles.
+Valid and invalid inputs were tested successfully.
+Enter-key handling and dialog messages work correctly.
